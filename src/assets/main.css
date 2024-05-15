@@ -7,6 +7,18 @@
   font-weight: normal;
 }
 
+header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1rem;
+}
+
+h1 {
+  font-size: 2.5rem;
+  font-weight: 900;
+}
+
 a,
 .green {
   text-decoration: none;
@@ -26,10 +38,44 @@ a,
     display: flex;
     place-items: center;
   }
+}
+input {
+  background: #f1f1f1;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  border: 1px solid #b2b2b2;
+}
 
-  #app {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    padding: 0 2rem;
-  }
+button {
+  padding: 1rem 2rem;
+  background: var(--vue-green);
+  color: white;
+  border: none;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  border: 1px solid var(--vue-green);
+  transition: all 0.2s ease-in-out;
+}
+
+button:hover {
+  --background-color: var(--vue-green-light);
+  color: black;
+}
+
+.content-section {
+  display: flex;
+  flex-direction: column;
+  margin: 2rem auto;
+  border: 1px solid var(--vue-green);
+  border-radius: 0.5rem;
+  gap: 1rem;
+  background: var(--color-background);
+  overflow: hidden;
+}
+
+.input-form {
+  display: flex;
+  gap: 2rem;
+  margin: 1rem;
+  padding: 2rem;
 }
