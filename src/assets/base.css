@@ -19,6 +19,9 @@
   --vt-c-text-light-2: rgba(60, 60, 60, 0.66);
   --vt-c-text-dark-1: var(--vt-c-white);
   --vt-c-text-dark-2: rgba(235, 235, 235, 0.64);
+
+  --vue-green: hsla(160, 100%, 37%, 1);
+  --vue-green-light: hsla(160, 80%, 57%, 1);
 }
 
 /* semantic color variables for this project */
