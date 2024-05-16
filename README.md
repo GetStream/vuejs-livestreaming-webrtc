@@ -1,6 +1,6 @@
 # Vue.js Live Streaming App with WebRTC
 
-This repository accompanies [the article](https://getstream.io/blog/vuejs-webrtc-livestreaming/) on the [Stream blog](https://getstream.io/blog/) on how to build a live-streaming application in [Vue.js](https://vuejs.org/) using Stream's native [Video & Audio SDK for JavaScript](https://getstream.io/video/docs/javascript/).
+This repository accompanies [the article](https://getstream.io/blog/vuejs-webrtc-livestreaming/) on the [Stream blog](https://getstream.io/blog/) on how to build a [live-streaming application](https://getstream.io/video/livestreaming/) in [Vue.js](https://vuejs.org/) using Stream's native [Video & Audio SDK for JavaScript](https://getstream.io/video/docs/javascript/).
 
 The tech we're using here:
 

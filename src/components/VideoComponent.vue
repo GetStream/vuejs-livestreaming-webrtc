@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, onMounted, onUnmounted, computed } from 'vue'
+import { ref, onMounted, onUnmounted } from 'vue'
 import type { Call, StreamVideoParticipant } from '@stream-io/video-client'
 
 const props = defineProps<{
@@ -9,54 +9,32 @@ const props = defineProps<{
 
 const videoElement = ref<HTMLVideoElement | null>(null)
 const audioElement = ref<HTMLAudioElement | null>(null)
-const unbindVideoElement = ref<() => void>(() => {})
-const unbindAudioElement = ref<() => void>(() => {})
-
-var sessionId = computed(() => {
-  return props.participant?.sessionId || 'sessionId'
-})
-
-var videoId = computed(() => {
-  return 'video-' + props.participant?.sessionId
-})
+const unbindVideoElement = ref<(() => void) | undefined>()
+const unbindAudioElement = ref<(() => void) | undefined>()
 
 onMounted(() => {
   if (videoElement.value) {
-    const unbindVideo = props.call?.bindVideoElement(
+    unbindVideoElement.value = props.call?.bindVideoElement(
       videoElement.value,
       props.participant?.sessionId || 'sessionId',
       'videoTrack'
     )
-    if (unbindVideo) {
-      unbindVideoElement.value = unbindVideo
-    }
   }
   if (audioElement.value) {
-    const unbindAudio = props.call?.bindAudioElement(
+    unbindAudioElement.value = props.call?.bindAudioElement(
       audioElement.value,
       props.participant?.sessionId || 'sessionId'
     )
-
-    if (unbindAudio) {
-      unbindAudioElement.value = unbindAudio
-    }
   }
 })
 
 onUnmounted(() => {
-  unbindVideoElement.value()
-  unbindAudioElement.value()
+  unbindVideoElement.value?.()
+  unbindAudioElement.value?.()
 })
 </script>
 <template>
-  <video
-    ref="videoElement"
-    v-bind:id="videoId"
-    v-bind:sessionId="sessionId"
-    width="400"
-    height="300"
-    autoplay
-  ></video>
+  <video ref="videoElement" width="400" height="300"></video>
   <audio ref="audioElement"></audio>
 </template>
 

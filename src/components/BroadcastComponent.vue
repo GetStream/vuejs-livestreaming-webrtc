@@ -4,10 +4,9 @@ import { storeToRefs } from 'pinia'
 import { useStreamStore } from '@/stores/streamStore'
 import VideoComponent from './VideoComponent.vue'
 const store = useStreamStore()
-const { call, localParticipant } = storeToRefs(store)
+const { call, isBackstage, localParticipant } = storeToRefs(store)
 
 const callId = ref('')
-const isBackstage = ref(true)
 
 const isCallLive = computed(() => {
   return call.value && localParticipant.value
@@ -21,11 +20,9 @@ function startBroadcast() {
 
 async function goLiveClicked() {
   if (isBackstage.value) {
-    const response = await call.value?.goLive()
-    isBackstage.value = response?.call.backstage ?? true
+    await call.value?.goLive()
   } else {
-    const response = await call.value?.stopLive()
-    isBackstage.value = response?.call.backstage ?? true
+    await call.value?.stopLive()
   }
 }
 

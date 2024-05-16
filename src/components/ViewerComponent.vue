@@ -9,13 +9,8 @@ const { call, remoteParticipant } = storeToRefs(store)
 const callId = ref('')
 
 const showRemoteVideo = computed(() => {
-  console.log('[ViewerComponent] showRemoteVideo', call.value, remoteParticipant.value)
   return call.value && remoteParticipant.value
 })
-
-function leaveStream() {
-  call.value?.leave()
-}
 
 function watchStream() {
   if (callId.value) {
@@ -28,7 +23,7 @@ function watchStream() {
   <section class="content-section" v-if="showRemoteVideo">
     <VideoComponent :call="call" :participant="remoteParticipant" />
     <div class="button-row">
-      <button @click="leaveStream">Leave</button>
+      <button @click="store.leaveStream">Leave</button>
     </div>
   </section>
   <section class="input-form content-section" v-else>
