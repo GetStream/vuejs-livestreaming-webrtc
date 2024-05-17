@@ -34,8 +34,8 @@ onUnmounted(() => {
 })
 </script>
 <template>
-  <video ref="videoElement" width="400" height="300"></video>
-  <audio ref="audioElement"></audio>
+  <video ref="videoElement" width="400" height="300" />
+  <audio ref="audioElement" />
 </template>
 
 <style scoped>

@@ -81,8 +81,9 @@ export const useStreamStore = defineStore('stream', () => {
   }
 
   async function leaveStream() {
+    await call.value?.leave()
     remoteParticipantSub.value?.unsubscribe()
-    call.value?.leave()
+
     call.value = undefined
   }
 
