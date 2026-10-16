@@ -1,11 +1,13 @@
-import { ref } from 'vue'
+import { markRaw, ref } from 'vue'
+import type { Raw } from 'vue'
 import { defineStore } from 'pinia'
 import { StreamVideoClient } from '@stream-io/video-client'
 import type { Call, StreamVideoParticipant } from '@stream-io/video-client'
 import type { Subscription } from 'rxjs'
 
 export const useStreamStore = defineStore('stream', () => {
-  const call = ref<Call | undefined>()
+  // markRaw keeps Vue from proxying the SDK's Call, which would also strip its type
+  const call = ref<Raw<Call> | undefined>()
   const isBackstage = ref<boolean>(false)
   const isBackstageSub = ref<Subscription | undefined>()
   const localParticipant = ref<StreamVideoParticipant | undefined>()
@@ -50,7 +52,7 @@ export const useStreamStore = defineStore('stream', () => {
     })
 
     // Update the local call value
-    call.value = newCall
+    call.value = markRaw(newCall)
   }
 
   async function endCall() {
@@ -77,7 +79,7 @@ export const useStreamStore = defineStore('stream', () => {
       }
     )
 
-    call.value = newCall
+    call.value = markRaw(newCall)
   }
 
   async function leaveStream() {
