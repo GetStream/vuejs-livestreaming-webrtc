@@ -17,6 +17,23 @@ Then, you need to create a `.env.local` file at the root of your project (simila
 
 To create a token for authenticating a user, you can either set up a server using one of our [backend SDKs](https://getstream.io/chat/sdk/#backend-clients). Or you can create a temporary token using our [free token generation tool](https://getstream.io/chat/docs/react/token_generator/).
 
+Then use node version 20 or higher to run the project.
+
+Finally, update the username and ID in the src/stores/streamStore.ts file.
+
+
+```
+//src/stores/streamStore.ts
+const streamVideoClient: StreamVideoClient = new StreamVideoClient({
+apiKey: apiKey,
+token: token,
+user: {
+id: 'Your User Id',
+name: 'Your User Name',
+image: 'https://getstream.io/random_svg/?id=Snoke&name=Snoke'
+}
+})
+```
 ## Feedback
 
 If you enjoy the repository, feel free to give it a ⭐️. If you have more questions or additional feedback, feel free to [reach out via X](https://twitter.com/getstream_io).
